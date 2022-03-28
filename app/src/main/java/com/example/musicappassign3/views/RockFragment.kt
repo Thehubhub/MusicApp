@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.musicappassign3.adapters.RockAdapter
 import com.example.musicappassign3.databinding.FragmentRockBinding
+import com.example.musicappassign3.model.RockItem
 import com.example.musicappassign3.model.Rocks
 import com.example.musicappassign3.presenters.RockPresenter
 import com.example.musicappassign3.presenters.RockPresenterContract
@@ -70,9 +71,9 @@ class RockFragment : Fragment(), RockViewContract {
             binding.songRecycler.visibility = View.GONE
         }
 
-        override fun rockSuccess(rockCollectionList: Rocks) {
+        override fun rockSuccess(rockCollectionList: List<RockItem>) {
             binding.songRecycler.visibility = View.VISIBLE
-            rockAdapter.updateRockList()
+            rockAdapter.updateRockList(rockCollectionList)
         }
 
         override fun rockTrackError(throwable: Throwable) {
