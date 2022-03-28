@@ -17,7 +17,7 @@ class RockAdapter(
 
 ): RecyclerView.Adapter<RockMusicViewHolder>(){
 
-    fun updateRockList(newRockTrack: RockItem){
+    fun updateRockList(newRockTrack: List<RockItem>){
         rockCollectionItem.clear()
         rockCollectionItem.addAll(newRockTrack)
         notifyDataSetChanged()

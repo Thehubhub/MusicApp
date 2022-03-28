@@ -1,6 +1,7 @@
 package com.example.musicappassign3.presenters
 
 import android.content.Context
+import com.example.musicappassign3.model.RockItem
 import com.example.musicappassign3.model.Rocks
 import com.example.musicappassign3.rest.MusicService
 import com.example.musicappassign3.rest.NetworkUtils
@@ -47,7 +48,7 @@ class RockPresenter(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { response -> viewContract?.rockSuccess(response) },
+                { response -> viewContract?.rockSuccess(response.rockItems) },
                 { error -> viewContract?.rockTrackError(error) }
             ).apply {
                 disposable.add(this)
@@ -57,7 +58,7 @@ class RockPresenter(
 
 interface RockViewContract{
     fun loadingRockTrack(isLoading: Boolean)
-    fun rockSuccess(rockCollectionList: Rocks)
+    fun rockSuccess(rockCollectionList: List<RockItem>)
     fun rockTrackError(throwable: Throwable)
 }
 
